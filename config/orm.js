@@ -1,4 +1,4 @@
-const holidayDB = require("../config/connection.js");
+const holidayDB = require("/config/connection.js");
 
 const orm = {
   // Select everything from a single table
