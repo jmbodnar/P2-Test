@@ -1,0 +1,104 @@
+<div class="container">
+  <h1><a href="/" class="title-link">‘Tis the Season...ing</a></h1>
+  {{#each recipe}}
+  <h2>
+    {{title}}
+  </h2>
+  {{/each}}
+  {{! Accessing information about the recipe }}
+  {{#each recipe}}
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-5">
+        <dl>
+          <dt>
+            Category
+          </dt>
+          <dd>
+            {{category}}
+          </dd>
+          <dt>
+            Main Ingredient
+          </dt>
+          <dd>
+            {{main_ingredient}}
+          </dd>
+          <dt>
+            Ingredients
+          </dt>
+          <dd>
+            {{ingredients}}
+          </dd>
+      </div>
+      <div class="col-7">
+        <dt>
+          Directions
+        </dt>
+        <dd>
+          {{directions}}
+        </dd>
+      </div>
+    </div>
+    <hr>
+    <div class="row justify-content-between">
+      <div class="col-5">
+        <dt>
+          Creator
+        </dt>
+        <dd>
+          {{creator}}
+          |
+          {{date_added}}
+        </dd>
+      </div>
+      <div class="col-7">
+        <dt>
+          Votes
+        </dt>
+        <dd>
+          {{votes}}
+        </dd>
+      </div>
+      </dl>
+      {{/each}}
+    </div>
+  </div>
+  {{! Accessing Comments on the Recipe }}
+  <br>
+  <div class="container">
+    <button class="accordion btn-danger" align="left">
+      <h4>Comments ({{recipe.num_comments}})</h4>
+    </button>
+    <div class="panel">
+      {{#each recipe.comments}}
+      <dl>
+        <dt>
+          <br>
+          {{this.commenter}}
+          |
+          {{this.added}}
+        </dt>
+        <dd>
+          {{this.comment_text}}
+        </dd>
+      </dl>
+      <hr />
+      {{/each}}
+    </div>
+  </div>
+
+  <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
